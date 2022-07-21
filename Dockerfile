@@ -39,7 +39,6 @@ RUN apt install curl -y
 RUN apt-get install ffmpeg -y
 RUN apt install apt-transport-https
 RUN curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg -y
-RUN echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|tee /etc/apt/sources.list.d/brave-browser-release.list
 RUN apt update
 RUN apt install brave-browser
 
