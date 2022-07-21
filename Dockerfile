@@ -35,7 +35,14 @@ CMD ["/opt/bin/entry_point.sh"]
 #============================
 FROM ubuntu-base as ubuntu-utilities
 RUN apt-get update
+RUN aot install curl -y
 RUN apt-get install ffmpeg -y
+RUN apt install apt-transport-https curl
+RUN curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg -y
+RUN echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|tee /etc/apt/sources.list.d/brave-browser-release.list
+RUN apt update
+RUN apt install brave-browser
+
 RUN apt-get -qqy update \
     && apt-get -qqy --no-install-recommends install \
         firefox htop terminator gnupg2 software-properties-common \
